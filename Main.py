@@ -54,5 +54,5 @@ async def on_message(message):
             await message.channel.send("총 " + "%d" % (len(rmembers)) + " 명 예약확인")
 
 
-access_token = os.environ("BOT_TOKEN")
+access_token = os.environ["BOT_TOKEN"]
 client.run(access_token)
