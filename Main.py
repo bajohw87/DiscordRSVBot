@@ -4,7 +4,7 @@ import os
 client = discord.Client()
 
 fixMemberStr: str = os.environ["FIX_MEMBERS"]
-fixMembers = [];
+fixMembers = []
 rMembers = []
 
 #예약초기화
