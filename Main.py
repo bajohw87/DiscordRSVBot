@@ -59,11 +59,11 @@ async def on_message(message):
             if (len(chkMessage) != 2):
                 return await message.channel.send("장비조회 실패!! 잘못된 명령어 입니다. 띄어쓰기 확인해주세요.")
             await message.channel.send(findgear(message.content[4:]))
-        if message.content.startswith("/명령어"):
+        if message.content.startswith("/봇"):
             if message.channel.id == 698931662553350205:
                 if message.author.id == 228518553882460171 or message.author.id == 525925078878388244:
-                    return await message.channel.send("----일반 명령어----\n/예약확인 아이디\n/로그 아이디\n/장비 아이디\n----관리자 명령어(관리자 <= 채널에서만)----\n/추가 아이디\n/삭제 아이디\n/명단\n/초기화")
-            await message.channel.send("----명령어----\n/예약확인 아이디\n/로그 아이디\n/장비 아이디")
+                    return await message.channel.send("-----일반-----\n/예약확인 아이디\n/로그 아이디\n/장비 아이디\n----관리자 <= 채널에서만----\n/추가 아이디\n/삭제 아이디\n/명단\n/초기화")
+            await message.channel.send("----------\n/예약확인 아이디\n/로그 아이디\n/장비 아이디")
 
         #관리자
         print(message.author.id)
