@@ -68,8 +68,8 @@ async def on_message(message):
         if message.content.startswith("/봇"):
             if message.channel.id == 698931662553350205:
                 if message.author.id == 228518553882460171 or message.author.id == 525925078878388244:
-                    return await message.channel.send("-----일반-----\n/예약확인 아이디\n/로그 아이디\n/장비 아이디\n-----관리자 <= 채널에서만-----\n/추가 아이디\n/삭제 아이디\n/명단\n/초기화")
-            await message.channel.send("----------\n/예약확인 아이디\n/로그 아이디\n/장비 아이디")
+                    return await message.channel.send("-----일반-----\n/예약확인 아이디\n/로그 아이디\n/장비 아이디\n/리셋\n-----관리자 <= 채널에서만-----\n/추가 아이디\n/삭제 아이디\n/명단\n/초기화")
+            await message.channel.send("----------\n/예약확인 아이디\n/로그 아이디\n/장비 아이디\n/리셋")
 
         #관리자
         #print(message.author.id)
