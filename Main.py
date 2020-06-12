@@ -26,6 +26,10 @@ def findlog(id):
 def findgear(id):
     return "https://wowgc.net/character/kr/로크홀라/" + id
 
+#리셋
+def findreset():
+    return "http://wowreset.xyz/"
+
 @client.event
 async def on_ready():
     print(client.user.id)
@@ -34,9 +38,9 @@ async def on_ready():
 @client.event
 async def on_message(message):
     try:
-        # 사용자
-        print(message.content[6:])
-        print(message.content[10:])
+        #사용자
+        #print(message.content[6:])
+        #print(message.content[10:])
         if message.content.startswith("/예약확인"):
             rYn = False
             for rMember in rMembers:
@@ -59,6 +63,8 @@ async def on_message(message):
             if (len(chkMessage) != 2):
                 return await message.channel.send("장비조회 실패!! 잘못된 명령어 입니다. 띄어쓰기 확인해주세요.")
             await message.channel.send(findgear(message.content[4:]))
+        if message.content.startswith("/리셋"):
+            await message.channel.send(findreset())
         if message.content.startswith("/봇"):
             if message.channel.id == 698931662553350205:
                 if message.author.id == 228518553882460171 or message.author.id == 525925078878388244:
@@ -66,8 +72,8 @@ async def on_message(message):
             await message.channel.send("----------\n/예약확인 아이디\n/로그 아이디\n/장비 아이디")
 
         #관리자
-        print(message.author.id)
-        print(type(message.author.id))
+        #print(message.author.id)
+        #print(type(message.author.id))
         if message.channel.id == 698931662553350205:
             if message.author.id == 228518553882460171 or message.author.id == 525925078878388244:
                 if message.content.startswith("/추가"):
