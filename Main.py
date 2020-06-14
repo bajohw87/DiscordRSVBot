@@ -24,8 +24,8 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-                  if message.content.startswith("/초기화"):
-                    return await message.channel.send("하이")
+    if message.content.startswith("/초기화"):
+        await message.channel.send("하이")
 
 
 
