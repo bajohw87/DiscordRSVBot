@@ -17,7 +17,15 @@ client = discord.Client()
 #insert -> result.inserted_id or result.inserted_ids
 #update -> result.matched_count or result.modified_count
 #delete -> result.deleted_count
+@client.event
+async def on_ready():
+    print(client.user.id)
+    print("ready")
 
+@client.event
+async def on_message(message):
+                  if message.content.startswith("/초기화"):
+                    return await message.channel.send("하이")
 
 
 
