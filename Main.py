@@ -217,35 +217,35 @@ async def on_message(message):
             chkMessage = message.content.split(' ')
             if (len(chkMessage) != 2):
                 return await message.channel.send("로그조회 실패!! 잘못된 명령어 입니다. 명령어 확인해주세요.")
-            await message.channel.send(findlog(message.content[4:]))
+            return await message.channel.send(findlog(message.content[4:]))
         if message.content.startswith("/장비"):
             chkMessage = message.content.split(' ')
             if (len(chkMessage) != 2):
                 return await message.channel.send("장비조회 실패!! 잘못된 명령어 입니다. 명령어 확인해주세요.")
-            await message.channel.send(findgear(message.content[4:]))
+            return await message.channel.send(findgear(message.content[4:]))
         if message.content.startswith("/리셋"):
-            await message.channel.send(findreset())
+            return await message.channel.send(findreset())
         if message.content.startswith("/봇"):
-            if message.channel.id == int(os.environ["ADMIN_CHANNEL_ID"]):
+            if message.channel.id == os.environ["ADMIN_CHANNEL_ID"]:
                 if message.author.id == 228518553882460171 or message.author.id == 525925078878388244:
                     return await message.channel.send("-----일반-----\n/예약확인 아이디\n/로그 아이디\n/장비 아이디\n/리셋\n-----관리자봇전용 <= 채널에서만-----\n/고정추가 아이디\n/고정삭제 아이디\n/고정명단\n/고정명단 상세\n/추가 아이디\n/삭제 아이디\n/명단\n/명단 상세\n/초기화")
-            await message.channel.send("----------\n/예약확인 아이디\n/로그 아이디\n/장비 아이디\n/리셋")
+            return await message.channel.send("----------\n/예약확인 아이디\n/로그 아이디\n/장비 아이디\n/리셋")
 
         #관리자
         #print(message.author.id)
         #print(type(message.author.id)
-        if message.channel.id == int(os.environ["ADMIN_CHNNEL_ID"]):
+        if message.channel.id == os.environ["ADMIN_CHNNEL_ID"]:
             if message.author.id == 228518553882460171 or message.author.id == 525925078878388244:
                 if message.content.startswith("/고정추가"):
                     chkMessage = message.content.split(' ')
                     if(len(chkMessage) != 2):
                         return await message.channel.send("고정추가 실패!! 잘못된 명령어 입니다. 명령어 확인해주세요.")
-                    await message.channel.send(registFixMember(chkMessage[1]))
+                    return await message.channel.send(registFixMember(chkMessage[1]))
                 if message.content.startswith("/고정삭제"):
                     chkMessage = message.content.split(' ')
                     if (len(chkMessage) != 2):
                         return await message.channel.send("고정삭제 실패!! 잘못된 명령어 입니다. 명령어 확인해주세요.")
-                    await message.channel.send(deleteFixMember(chkMessage[1]))
+                    return await message.channel.send(deleteFixMember(chkMessage[1]))
                 if message.content.startswith("/고정명단"):
                     return await message.channel.send(retrieveFixMember(message))
                 if message.content.startswith("/추가"):
@@ -263,6 +263,6 @@ async def on_message(message):
                 if message.content.startswith("/초기화"):
                     return await message.channel.send(resetReservationMember())
     except :
-        await message.channel.send("Bot Error")
+        return await message.channel.send("Bot Error")
 
 client.run(os.environ["BOT_TOKEN"])
