@@ -229,7 +229,7 @@ async def on_message(message):
             channelid = str(message.channel.id)
             if channelid == os.environ["ADMIN_CHANNEL_ID"]:
                 if message.author.id == 228518553882460171 or message.author.id == 525925078878388244:
-                    return await message.channel.send("-----일반-----\n/예약확인 아이디\n/로그 아이디\n/장비 아이디\n/리셋\n-----관리자봇전용 <= 채널에서만-----\n/고정추가 아이디\n/고정삭제 아이디\n/고정명단\n/고정명단 상세\n/추가 아이디\n/삭제 아이디\n/명단\n/명단 상세\n/초기화")
+                    return await message.channel.send("-----일반-----\n/예약확인 아이디\n/로그 아이디\n/장비 아이디\n/리셋\n-----관리자봇전용 <= 채널에서만-----\n/고정추가 아이디|클래스|역할|특성  (특성생략가능)\n/고정삭제 아이디\n/고정명단\n/고정명단 상세\n/추가 아이디|클래스|역할|특성  (특성생략가능)\n/삭제 아이디\n/명단\n/명단 상세\n/초기화")
             return await message.channel.send("----------\n/예약확인 아이디\n/로그 아이디\n/장비 아이디\n/리셋")
 
         #관리자
