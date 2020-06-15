@@ -104,9 +104,9 @@ def deleteFixMember(id):
 
 #예약 확인
 def confirmReservationMember(id):
-    mCursor = rCol.find({"_id": id}).sort("regdt", pymongo.ASCENDING)
+    mCursor = rCol.find().sort("regdt", pymongo.ASCENDING)
     for member in mCursor:
-        if id == member["_id"]:
+        if id.lower() == member["_id"].lower():
             return id+"님 예약 되었습니다. 공초시간은 월요일 오후 10:30분 입니다!"
     return id+"님 예약확인 안되네요. 예약 글을 다시 남겨주세요"
 
