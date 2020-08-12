@@ -264,10 +264,9 @@ async def on_message(message):
             return await message.channel.send(findreset())
         if message.content.startswith("/봇"):
             channelid = str(message.channel.id)
-            msg = channelid + " " + os.environ["ADMIN_CHANNEL_ID"] + " " + message.author.id
             if channelid == os.environ["ADMIN_CHANNEL_ID"]:
                 if message.author.id == 228518553882460171 or message.author.id == 525925078878388244:
-                    message.channel.send(msg+"-----일반-----\n/예약확인 아이디 요일\n/로그 아이디\n/장비 아이디\n/리셋\n-----관리자봇전용 <= 채널에서만-----\n/고정추가 아이디 클래스 역할 요일\n/고정삭제 아이디 요일\n/고정명단 요일\n/고정명단 요일 상세\n/추가 아이디 클래스 역할 요일\n/삭제 아이디 요일\n/명단 요일\n/명단 요일 상세\n/초기화 요일")
+                    return await message.channel.send(msg+"-----일반-----\n/예약확인 아이디 요일\n/로그 아이디\n/장비 아이디\n/리셋\n-----관리자봇전용 <= 채널에서만-----\n/고정추가 아이디 클래스 역할 요일\n/고정삭제 아이디 요일\n/고정명단 요일\n/고정명단 요일 상세\n/추가 아이디 클래스 역할 요일\n/삭제 아이디 요일\n/명단 요일\n/명단 요일 상세\n/초기화 요일")
             return await message.channel.send(msg+"----------\n/예약확인 아이디 요일\n/로그 아이디\n/장비 아이디\n/리셋")
 
         #관리자
