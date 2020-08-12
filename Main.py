@@ -7,10 +7,10 @@ import os
 client = discord.Client()
 
 #heroku mongodb
-connection = pymongo.MongoClient('mongodb://%s:%s@ds253408.mlab.com:53408/heroku_rsl9vgcf?retryWrites=false' % (os.environ["DB_USERNAME"], os.environ["DB_PASSWORD"]))
-db = connection["heroku_rsl9vgcf"]
-fixCol = db["FIX_MEMBERS"]
-rCol = db["R_MEMBERS"]
+connection = pymongo.MongoClient('mongodb://%s:%s@cluster0-shard-00-00.hcdzj.mongodb.net:27017,cluster0-shard-00-01.hcdzj.mongodb.net:27017,cluster0-shard-00-02.hcdzj.mongodb.net:27017/MEMBER?ssl=true&replicaSet=atlas-5f3pgd-shard-0&authSource=admin&retryWrites=false&w=majority' % (os.environ["DB_USERNAME"], os.environ["DB_PASSWORD"]))
+db = connection["MEMBER"]
+fixCol = db["FIX_MEMBER"]
+rCol = db["R_MEMBER"]
 jobArr = ["전사","도적","법사","흑마","냥꾼","사제","술사","드루"]
 roleArr = ["탱","딜","힐"]
 
