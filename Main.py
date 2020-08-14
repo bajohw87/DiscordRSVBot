@@ -1,6 +1,7 @@
 import discord
 import pymongo
 import datetime
+import uuid
 import os
 
 #discord client
@@ -48,7 +49,7 @@ def retrieveFixMember(message):
                     mem: str = ""
                     for member in mCursor:
                         mCnt = mCnt+1
-                        mem = mem + member["_id"] + " (" + member["role"] + ")\n"
+                        mem = mem + member["name"] + " (" + member["role"] + ")\n"
                     msg = msg + "-----" + jobArr[i] + "(" + "%d" % mCnt + ")-----\n" + mem
                 msg = msg + "총 " + "%d" % (fixCol.count_documents({"etc1": msgArr[1]})) + " 명"
                 for i in range(0, len(roleArr)):
@@ -69,7 +70,7 @@ def retrieveFixMember(message):
         mCursor = fixCol.find({"etc1": msgArr[1]}).sort("regdt", pymongo.ASCENDING)
         msg: str = ""
         for member in mCursor:
-            msg = msg + member["_id"] + "\n"
+            msg = msg + member["name"] + "\n"
         msg = msg + "총 " + "%d" % (fixCol.count_documents({"etc1": msgArr[1]})) + " 명"
         return msg
 
@@ -86,7 +87,8 @@ def registFixMember(message):
         if msgArr[4] == "":
             return "요일을 입력해주세요."
         memObj = {
-            "_id": msgArr[1],
+            "_id": uuid.uuid4(),
+            "name": msgArr[1],
             "job": msgArr[2],
             "role": msgArr[3],
             "etc1": msgArr[4],
@@ -106,7 +108,7 @@ def deleteFixMember(message):
             return "아이디를 입력해주세요."
         if msgArr[2] == "":
             return "요일을 입력해주세요."
-        result = fixCol.delete_one({"_id": msgArr[1], "etc1": msgArr[2]})
+        result = fixCol.delete_one({"name": msgArr[1], "etc1": msgArr[2]})
         if result.deleted_count > 0:
             return msgArr[1] + "님 " + msgArr[2] + "요일 고정 삭제 완료"
         else:
@@ -122,9 +124,9 @@ def confirmReservationMember(message):
             return "아이디를 입력해주세요."
         if msgArr[2] == "":
             return "요일을 입력해주세요."
-        mCursor = rCol.find({"_id": msgArr[1], "etc1": msgArr[2]}).sort("regdt", pymongo.ASCENDING)
+        mCursor = rCol.find({"name": msgArr[1], "etc1": msgArr[2]}).sort("regdt", pymongo.ASCENDING)
         for member in mCursor:
-            if msgArr[1].lower() == member["_id"].lower():
+            if msgArr[1].lower() == member["name"].lower():
                 return msgArr[1] + "님 예약 되었습니다. 공초시간은 " + msgArr[2] + "요일 오후 10:30분 입니다!"
         return msgArr[1]+"님 예약확인 안되네요. 예약 글을 다시 남겨주세요"
     else:
@@ -147,7 +149,7 @@ def retrieveReservationMember(message):
                     mem: str = ""
                     for member in mCursor:
                         mCnt = mCnt + 1
-                        mem = mem + member["_id"] + " (" + member["role"] + ")\n"
+                        mem = mem + member["name"] + " (" + member["role"] + ")\n"
                     msg = msg + "-----" + jobArr[i] + "(" + "%d" % mCnt + ")-----\n" + mem
                 msg = msg + "총 " + "%d" % (rCol.count_documents({"etc1": msgArr[1]})) + " 명"
                 for i in range(0, len(roleArr)):
@@ -167,7 +169,7 @@ def retrieveReservationMember(message):
         mCursor = rCol.find({"etc1": msgArr[1]}).sort("regdt", pymongo.ASCENDING)
         msg: str = ""
         for member in mCursor:
-            msg = msg + member["_id"] + "\n"
+            msg = msg + member["name"] + "\n"
         msg = msg + "총 " + "%d" % (rCol.count_documents({"etc1": msgArr[1]})) + " 명"
         return msg
 
@@ -184,7 +186,8 @@ def registReservationMember(message):
         if msgArr[4] == "":
             return "요일을 입력해주세요."
         memObj = {
-            "_id": msgArr[1],
+            "_id": uuid.uuid4(),
+            "name": msgArr[1],
             "job": msgArr[2],
             "role": msgArr[3],
             "etc1": msgArr[4],
@@ -204,7 +207,7 @@ def deleteReservationMember(message):
             return "아이디를 입력해주세요."
         if msgArr[2] == "":
             return "요일을 입력해주세요."
-        result = rCol.delete_one({"_id": msgArr[1], "etc1": msgArr[2]})
+        result = rCol.delete_one({"name": msgArr[1], "etc1": msgArr[2]})
         if result.deleted_count > 0:
             return msgArr[1] + "님 " + msgArr[2] + "요일 예약 삭제 완료"
         else:
@@ -223,6 +226,7 @@ def resetReservationMember(message):
         for member in mCursor:
             memObj = {
                 "_id": member["_id"],
+                "name": member["name"],
                 "job": member["job"],
                 "role": member["role"],
                 "etc1": member["etc1"],
